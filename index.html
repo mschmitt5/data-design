@@ -6,5 +6,40 @@
 </head>
 <body>
     <h1>Data Design</h1>
+    <h2>Entities and Attributes</h2>
+    <ul>
+        <li>User Profile</li>
+            <ul>
+                <li>userName</li>
+                <li>userPassword?</li>
+                <li>userProfileStatement</li>
+                <li>userLinks</li>
+                <li>userPhoto</li>
+            </ul>
+        <li>Articles</li>
+            <ul>
+                <li>article</li>
+                <li>articlePhoto</li>
+                <li>articleTitle</li>
+                <li>articleTags</li>
+                <li>articleClaps</li>
+                <li>articleShares</li>
+            </ul>
+    </ul>
+    <h2>Relationships</h2>
+    <ul>
+        <li>Author to Article 1-to-n</li>
+        <li>Non-author to Article</li>
+            <ul>
+                <li>Claps m-to-n</li>
+                <li>Shares m-to-n</li>
+            </ul>
+        <li>User to User</li>
+            <ul>
+                <li>Follow m-to-n</li>
+            </ul>
+    </ul>
+    <h2>User Story</h2>
+    <p>User Tiberius reads an article by Dr. McCoy and loves it so much he would like to follow the author so he won't miss any of his posts.</p>
 </body>
 </html>
