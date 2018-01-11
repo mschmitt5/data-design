@@ -6,15 +6,32 @@
 </head>
 <body>
     <h1>Data Design</h1>
-    <img src="Inkedmedium%201_LI.jpg" alt="marked up medium page part 1" width="1000">
-    <img src="Inkedmedium%202_LI.jpg" alt="marked up medium page part 2" width="1000">
+    <h2>Persona - Tiberius Calabrese</h2>
+    <img src="">
+    <p>Tiberius Calabrese is an airline pilot who loves to keep his mind occupied with by learning the basics of new things but feels he doesn't have the downtime to read entire books. He has turned to Medium in order to read blog posts instead. He's become particularly interested in medical science and human nature but has no interest in writing a blog himself.</p>
+    <img src="tiberius.jpg" alt="Tiberius Calabrese">
+    <h2>User Story</h2>
+    <p>Tiberius would like to read more articles on medicine and humanity while his plane is on autopilot. He has stumbled upon one of Dr. McCoy's articles in the past and would also like to read more by this particular author.</p>
+    <h2>Use Case and Interaction Flow</h2>
+    <ol>
+        <li>Tiberius types "medicine" and "humanity" into the search bar on Medium.</li>
+        <li>The site brings up articles including the tags "medicine" and "humanity".</li>
+        <li>Tiberius recognizes the article he read in the past and clicks on it.</li>
+        <li>The site takes him to this specific article.</li>
+        <li>Tiberius would like to follow this author so that he doesn't miss any of his articles.</li>
+        <li>He clicks on the "follow" button.</li>
+        <li>The site prompts him to sign in or create an account.</li>
+        <li>He enters in his relevant info in order to create an account(email, username, etc).</li>
+        <li>The site checks that this information is valid and available and creates Tiberius' account.</li>
+        <li>Tiberius clicks the "follow" button again and successfully follows Dr. McCoy.</li>
+    </ol>
     <h2>Entities and Attributes</h2>
     <ul>
         <li>User Profile
             <ul>
+                <li>userId</li>
                 <li>userName</li>
                 <li>userPassword?</li>
-                <li>userId</li>
                 <li>userProfileStatement</li>
                 <li>userLinks</li>
                 <li>userPhoto</li>
@@ -23,6 +40,7 @@
         <li>Articles
             <ul>
                 <li>articleId</li>
+                <li>articleText</li>
                 <li>articlePhoto</li>
                 <li>articleTitle</li>
                 <li>articleTags</li>
@@ -30,9 +48,9 @@
         </li>
         <li>"Clap"
             <ul>
+                <li>clapId</li>
                 <li>clapUserId</li>
                 <li>clapArticleId</li>
-                <li>numberOfClapsByUser?</li>
             </ul>
         </li>
     </ul>
@@ -50,15 +68,5 @@
             </ul>
         </li>
     </ul>
-    <h2>User Story</h2>
-    <p>User Tiberius reads an article by Dr. McCoy and loves it so much he would like to follow the author so he won't miss any of his posts.</p>
-    <h2>Use Case and Interaction Flow</h2>
-    <ol>
-        <li>1. Tiberius clicks an article to read.</li>
-        <li>2. The site shows him the article and he loves it!</li>
-        <li>3.Tiberius clicks "clap" many times to show his appreciation.</li>
-        <li>He also clicks "Follow" on the author's mini profile at the bottom of the page.</li>
-        <li>He will now be notified of any more interesting articles by Dr. McCoy.</li>
-    </ol>
 </body>
 </html>
