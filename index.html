@@ -12,18 +12,23 @@
             <ul>
                 <li>userName</li>
                 <li>userPassword?</li>
+                <li>userId</li>
                 <li>userProfileStatement</li>
                 <li>userLinks</li>
                 <li>userPhoto</li>
             </ul>
         <li>Articles</li>
             <ul>
-                <li>article</li>
+                <li>articleId</li>
                 <li>articlePhoto</li>
                 <li>articleTitle</li>
                 <li>articleTags</li>
-                <li>articleClaps</li>
-                <li>articleShares</li>
+            </ul>
+        <li>"Clap"</li>
+            <ul>
+                <li>clapUserId</li>
+                <li>clapArticleId</li>
+                <li>numberOfClapsByUser?</li>
             </ul>
     </ul>
     <h2>Relationships</h2>
@@ -32,7 +37,6 @@
         <li>Non-author to Article</li>
             <ul>
                 <li>Claps m-to-n</li>
-                <li>Shares m-to-n</li>
             </ul>
         <li>User to User</li>
             <ul>
@@ -41,5 +45,13 @@
     </ul>
     <h2>User Story</h2>
     <p>User Tiberius reads an article by Dr. McCoy and loves it so much he would like to follow the author so he won't miss any of his posts.</p>
+    <h2>Use Case and Interaction Flow</h2>
+    <ol>
+        <li>1. Tiberius clicks an article to read.</li>
+        <li>2. The site shows him the article and he loves it!</li>
+        <li>3.Tiberius clicks "clap" many times to show his appreciation.</li>
+        <li>He also clicks "Follow" on the author's mini profile at the bottom of the page.</li>
+        <li>He will now be notified of any more interesting articles by Dr. McCoy.</li>
+    </ol>
 </body>
 </html>
