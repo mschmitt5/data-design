@@ -28,44 +28,43 @@
         <li>The site checks that this information is valid and available and creates Tiberius' account.</li>
         <li>Tiberius clicks the "follow" button again and successfully follows Dr. McCoy.</li>
     </ol>
-    <img class="inline" src="inkedmedium1.jpg" alt="" width="500">
-    <img class="inline" src="inkedmedium2.jpg" alt="" width="500">
+    <img src="inkedmedium1.jpg" alt="" width="500">
+    <img src="inkedmedium2.jpg" alt="" width="500">
     </div>
-    <div class="right">
-    <h2>Entities and Attributes</h2>
-    <ul>
-        <li>Profile
-            <ul>
-                <li>profileId</li>
-                <li>profileName</li>
-                <li>profileStatement</li>
-                <li>profileEmail</li>
-                <li>profileHash</li>
-                <li>profileSalt</li>
-            </ul>
-        </li>
-        <li>Article
-            <ul>
-                <li>articleId</li>
-                <li>articleProfileId</li>
-                <li>articleText</li>
-                <li>articlePhoto</li>
-                <li>articleTitle</li>
-            </ul>
-        </li>
-        <li>Clap
-            <ul>
-                <li>clapId</li>
-                <li>clapProfileId</li>
-                <li>clapArticleId</li>
-            </ul>
-        </li>
-    </ul>
-    <h2>Relationships</h2>
-    <ul>
-        <li>Profile to Article 1-to-n</li>
-        <li>Claps to Article m-to-n</li>
-    </ul>
-    </div>
+        <h2>Entities and Attributes</h2>
+        <ul>
+            <li>Profile
+                <ul>
+                    <li>profileId (primary key)</li>
+                    <li>profileName</li>
+                    <li>profileStatement</li>
+                    <li>profileEmail</li>
+                    <li>profileHash</li>
+                    <li>profileSalt</li>
+                </ul>
+            </li>
+            <li>Article
+                <ul>
+                    <li>articleId (primary key)</li>
+                    <li>articleProfileId (foreign key)</li>
+                    <li>articleText</li>
+                    <li>articlePhoto</li>
+                    <li>articleTitle</li>
+                </ul>
+            </li>
+            <li>Clap (weak, try hard)
+                <ul>
+                    <li>clapId (primary key)</li>
+                    <li>clapProfileId (foreign key)</li>
+                    <li>clapArticleId (foreign key)</li>
+                </ul>
+            </li>
+        </ul>
+        <h2>Relationships</h2>
+        <ul>
+            <li>Profile to Article 1-to-n</li>
+            <li>Claps to Article m-to-n</li>
+            <li>Profile to Claps m-to-n</li>
+        </ul>
 </body>
 </html>
