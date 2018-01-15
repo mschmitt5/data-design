@@ -18,7 +18,7 @@ CREATE TABLE profile (
 CREATE TABLE article (
   articleId BINARY(16) NOT NULL,
   articleProfileId BINARY(16) NOT NULL,
-  articleText BLOB NOT NULL,
+  articleText VARCHAR(65535) NOT NULL,
   articleTitle VARCHAR(128) NOT NULL,
   INDEX (articleProfileId),
   FOREIGN KEY(articleProfileId) REFERENCES profile(profileId),
