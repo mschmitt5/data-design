@@ -70,7 +70,7 @@ class Profile implements \JsonSerializable
     /**
      * mutator method for profile ID
      *
-     * @param Uuid| string $newProfileId new value of profile ID
+     * @param Uuid|string $newProfileId new value of profile ID
      * @throws \RangeException if $newProfileId is not positive
      * @throws \TypeError if $newProfileId is not a uuid or string
      **/
@@ -233,12 +233,12 @@ class Profile implements \JsonSerializable
      * @throws \RangeException if $newProfileStatement is > 1000 characters
      **/
 
-    public function setProfileStatemet(string $newProfileStatement): void
+    public function setProfileStatement(string $newProfileStatement): void
     {
         $newProfileStatement = filter_var($newProfileStatement, FILTER_SANITIZE_STRING);
         if (strlen($newProfileStatement) > 1000) {
             throw(new \RangeException("profile statement is too large"));
         }
-        $this->profileStatment = $newProfileStatement;
+        $this->profileStatement = $newProfileStatement;
     }
 }
