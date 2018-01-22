@@ -9,7 +9,7 @@
 namespace Edu\Cnm\DataDesign;
 
 require_once ("autoload.php");
-require_once (dirname(__DIR__, 2) . "/vendor/autoload.php");
+require_once (dirname(__DIR__, 2) . "classes/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
@@ -160,7 +160,7 @@ public function getProfileName() : string {
  * @param string $newProfileName new value of profile name
  * @throws \InvalidArgumentException if $newProfileName is not a string or is insecure
  * @throws \TypeError if $newProfileName is not a string
- * @throws RangeException if $newProfileName is > 32 characters
+ * @throws \RangeException if $newProfileName is > 32 characters
  **/
 public function setProfileName(string $newProfileName) : void {
     $newProfileName = trim($newProfileName);
