@@ -148,5 +148,83 @@ public function setProfileHash(string $newProfileHash) : void {
 /**
  * accessor method for profile name
  *
- */
+ * @return string value of profile name
+ **/
+public function getProfileName() : string {
+    return ($this->profileName);
+}
 
+/**
+ * mutator method for profile name
+ *
+ * @param string $newProfileName new value of profile name
+ * @throws \InvalidArgumentException if $newProfileName is not a string or is insecure
+ * @throws \TypeError if $newProfileName is not a string
+ * @throws RangeException if $newProfileName is > 32 characters
+ **/
+public function setProfileName(string $newProfileName) : void {
+    $newProfileName = trim($newProfileName);
+    $newProfileName = filter_var($newProfileName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+    if(empty($newProfileName) === true) {
+        throw(new \InvalidArgumentException("profile name is empty or insecure"));
+    }
+
+    if(strlen($newProfileName) > 32) {
+        throw(new \RangeException("profile name is too large"));
+    }
+    $this->profileName = $newProfileName;
+}
+
+/**
+ *accessor method for profile salt
+ *
+ * @return string value of the salt
+ **/
+public function getProfileSalt(): string {
+    return $this->profileSalt;
+}
+/**
+ * mutator method for profile salt
+ *
+ * @param string $newProfileSalt
+ * @throws \InvalidArgumentException if the salt is not secure
+ * @throws \RangeException if the salt is not 64 characters
+ * @throws \TypeError if the profile salt is not a string
+ **/
+public function setProfileSalt(string $newProfileSalt): void {
+    $newProfileSalt = trim($newProfileSalt);
+    $newProfileSalt = strtolower($newProfileSalt);
+    if(!ctype_xdigit($newProfileSalt)) {
+        throw(new \InvalidArgumentException("profile password salt is empty or insecure"));
+    }
+    if(strlen($newProfileSalt) !== 64) {
+        throw(new \RangeException("profile salt must be 128 characters"));
+    }
+    $this->profileSalt = $newProfileSalt;
+}
+
+/**
+ * accessor method for profile statement
+ *
+ * @return string value of profile statement
+ **/
+
+public function getProfileStatement() {
+    return($this->profileStatement);
+}
+
+/**
+ * mutator method for profile statement
+ *
+ * @param string $newProfileStatement new value of profile statement
+ * @throws \TypeError if $newProfileStatement is not a string
+ * @throws \RangeException if $newProfileStatement is > 1000 characters
+ **/
+
+public function setProfileStatemet(string $newProfileStatement) : void {
+    $newProfileStatement = filter_var($newProfileStatement, FILTER_SANITIZE_STRING);
+    if(strlen($newProfileStatement) > 1000) {
+        throw(new \RangeException("profile statement is too large"));
+    }
+    $this->profileStatment = $newProfileStatement;
+}
