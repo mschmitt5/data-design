@@ -69,7 +69,7 @@ public function getProfileId() : Uuid {
 /**
  * mutator method for profile ID
  *
- * @param Uuid/string $newProfileId new value of profile ID
+ * @param Uuid| string $newProfileId new value of profile ID
  * @throws \RangeException if $newProfileId is not positive
  * @throws \TypeError if $newProfileId is not a uuid or string
  **/
@@ -118,7 +118,7 @@ public function setProfileEmail($newProfileEmail) : void {
 
 /**
  * accessor method for profileHash
- * @return value of profile hash
+ * @return string value of profile hash
  **/
 
 public function getProfileHash() {
