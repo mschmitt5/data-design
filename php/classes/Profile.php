@@ -62,8 +62,7 @@ class Profile implements \JsonSerializable
      * @return Uuid value of profile ID
      **/
 
-    public function getProfileId(): Uuid
-    {
+    public function getProfileId(): Uuid {
         return $this->profileId;
     }
 
@@ -74,8 +73,7 @@ class Profile implements \JsonSerializable
      * @throws \RangeException if $newProfileId is not positive
      * @throws \TypeError if $newProfileId is not a uuid or string
      **/
-    public function setProfileId($newProfileId): void
-    {
+    public function setProfileId($newProfileId): void {
         try {
             $uuid = self::validateUuid($newProfileId);
         } catch (\InvalidArgumentException | \ RangeException | \Exception | \TypeError $exception) {
@@ -93,8 +91,7 @@ class Profile implements \JsonSerializable
      * @return string value of profile email
      **/
 
-    public function getProfileEmail(): string
-    {
+    public function getProfileEmail(): string {
         return ($this->profileEmail);
     }
 
@@ -107,8 +104,7 @@ class Profile implements \JsonSerializable
      * @throws \InvalidArgumentException if $newProfileEmail is invalid or insecure
      **/
 
-    public function setProfileEmail($newProfileEmail): void
-    {
+    public function setProfileEmail($newProfileEmail): void {
         $newProfileEmail = trim($newProfileEmail);
         $newProfileEmail = filter_var($newProfileEmail, FILTER_VALIDATE_EMAIL);
         if (empty($newProfileEmail) === true) {
@@ -125,8 +121,7 @@ class Profile implements \JsonSerializable
      * @return string value of profile hash
      **/
 
-    public function getProfileHash()
-    {
+    public function getProfileHash() : string {
         return ($this->profileHash);
     }
 
@@ -138,8 +133,7 @@ class Profile implements \JsonSerializable
      * @throws \RangeException if the hash is not 128 characters
      * @throws \TypeError if profile hash is not a string
      **/
-    public function setProfileHash(string $newProfileHash): void
-    {
+    public function setProfileHash(string $newProfileHash): void {
         $newProfileHash = trim($newProfileHash);
         $newProfileHash = strtolower($newProfileHash);
         if (empty($newProfileHash) === true) {
@@ -156,8 +150,7 @@ class Profile implements \JsonSerializable
      *
      * @return string value of profile name
      **/
-    public function getProfileName(): string
-    {
+    public function getProfileName(): string {
         return ($this->profileName);
     }
 
@@ -169,8 +162,7 @@ class Profile implements \JsonSerializable
      * @throws \TypeError if $newProfileName is not a string
      * @throws \RangeException if $newProfileName is > 32 characters
      **/
-    public function setProfileName(string $newProfileName): void
-    {
+    public function setProfileName(string $newProfileName): void {
         $newProfileName = trim($newProfileName);
         $newProfileName = filter_var($newProfileName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
         if (empty($newProfileName) === true) {
@@ -188,8 +180,7 @@ class Profile implements \JsonSerializable
      *
      * @return string value of the salt
      **/
-    public function getProfileSalt(): string
-    {
+    public function getProfileSalt(): string {
         return $this->profileSalt;
     }
 
@@ -201,8 +192,7 @@ class Profile implements \JsonSerializable
      * @throws \RangeException if the salt is not 64 characters
      * @throws \TypeError if the profile salt is not a string
      **/
-    public function setProfileSalt(string $newProfileSalt): void
-    {
+    public function setProfileSalt(string $newProfileSalt): void {
         $newProfileSalt = trim($newProfileSalt);
         $newProfileSalt = strtolower($newProfileSalt);
         if (!ctype_xdigit($newProfileSalt)) {
@@ -220,8 +210,7 @@ class Profile implements \JsonSerializable
      * @return string value of profile statement
      **/
 
-    public function getProfileStatement()
-    {
+    public function getProfileStatement() : string {
         return ($this->profileStatement);
     }
 
@@ -233,8 +222,7 @@ class Profile implements \JsonSerializable
      * @throws \RangeException if $newProfileStatement is > 1000 characters
      **/
 
-    public function setProfileStatement(string $newProfileStatement): void
-    {
+    public function setProfileStatement(string $newProfileStatement): void {
         $newProfileStatement = filter_var($newProfileStatement, FILTER_SANITIZE_STRING);
         if (strlen($newProfileStatement) > 1000) {
             throw(new \RangeException("profile statement is too large"));
