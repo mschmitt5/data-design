@@ -63,7 +63,7 @@ class Profile implements \JsonSerializable {
  **/
 
 public function getProfileId() : Uuid {
-    return($this->profileId);
+    return $this->profileId;
 }
 
 /**
@@ -134,9 +134,9 @@ public function getProfileHash() {
  * @throws \TypeError if profile hash is not a string
  **/
 public function setProfileHash(string $newProfileHash) : void {
-    $newProfileHash = trim($newProfileHashds);
+    $newProfileHash = trim($newProfileHash);
     $newProfileHash = strtolower($newProfileHash);
-    if(empty($newProfileHash) === ) {
+    if(empty($newProfileHash) === true) {
         throw(new \InvalidArgumentException("profile hash empty or insecure"));
     }
     if(!ctype_xdigit($newProfileHash)) {
