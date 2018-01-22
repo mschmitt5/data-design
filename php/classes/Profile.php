@@ -23,8 +23,7 @@ use Ramsey\Uuid\Uuid;
  *
  **/
 
-class Profile implements \JsonSerializable
-{
+class Profile implements \JsonSerializable {
     use ValidateUuid;
     /**
      * ID for this profile. This will be the primary key.
