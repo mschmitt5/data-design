@@ -28,35 +28,40 @@ class Profile {
     /**
      * ID for this profile. This will be the primary key.
      * @var Uuid $profileId
-     */
+     **/
     private $profileId;
     /**
      * email for the profile
      * @var string $profileEmail
-     */
+     **/
     private $profileEmail;
     /**
      * hash for validating password
      * @var $profileHash
-     */
+     **/
     private $profileHash;
     /**
      * Name attached to this profile.
      * @var string $profileName
-     */
+     **/
     private $profileName;
     /**
      * salt for validating password
      * @var $profileSalt
-     */
+     **/
     private $profileSalt;
     /**
      * "about me" section of the profile.
      * @var string $profileStatement
-     */
+     **/
     private $profileStatement;
 }
 
 /**
  * accessor method for profile ID
- */
+ * @return Uuid value of profile ID
+ **/
+
+public function getProfileId() : Uuid {
+    return($this->profileId);
+}
