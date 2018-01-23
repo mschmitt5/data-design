@@ -16,7 +16,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * Small article class for a site similar to Medium.
  *
- * This profile is a short example of an article class for many blogging sites - specifically I am emulating Medium.
+ * This article is a short example of an article class for many blogging sites - specifically I am emulating Medium.
  *
  * @author Mary MacMillan <mschmitt5@cnm.edu>
  * @author Dylan McDonald <dmcdonald21@cnm.edu>

@@ -14,9 +14,9 @@ use Edu\Cnm\DataDesign\ValidateUuid;
 use Edu\Cnm\DataDesign\ValidateDate;
 use Ramsey\Uuid\Uuid;
 /**
- * Small article class for a site similar to Medium.
+ * Small like/clap class for a site similar to Medium.
  *
- * This profile is a short example of an article class for many blogging sites - specifically I am emulating Medium.
+ * This clap class is a short example of a like class for some blogging sites - specifically I am emulating Medium. It is different than a usual like because one user can like one article more than once.
  *
  * @author Mary MacMillan <mschmitt5@cnm.edu>
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
@@ -47,6 +47,10 @@ class article implements \JsonSerializable{
      * @var Uuid $clapProfileId
      **/
     private $clapProfileId;
+
+    /**
+     * constructor
+     */
 
 
 
