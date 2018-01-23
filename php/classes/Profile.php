@@ -26,31 +26,37 @@ use Ramsey\Uuid\Uuid;
 
 class Profile implements \JsonSerializable {
     use ValidateUuid;
+
     /**
      * ID for this profile. This will be the primary key.
      * @var Uuid $profileId
      **/
     private $profileId;
+
     /**
      * email for the profile
      * @var string $profileEmail
      **/
     private $profileEmail;
+
     /**
      * hash for validating password
      * @var $profileHash
      **/
     private $profileHash;
+
     /**
      * Name attached to this profile.
      * @var string $profileName
      **/
     private $profileName;
+
     /**
      * salt for validating password
      * @var $profileSalt
      **/
     private $profileSalt;
+
     /**
      * "about me" section of the profile.
      * @var string $profileStatement
@@ -61,7 +67,6 @@ class Profile implements \JsonSerializable {
      * accessor method for profile ID
      * @return Uuid value of profile ID
      **/
-
     public function getProfileId(): Uuid {
         return $this->profileId;
     }
@@ -90,7 +95,6 @@ class Profile implements \JsonSerializable {
      *accessor method for profile email
      * @return string value of profile email
      **/
-
     public function getProfileEmail(): string {
         return ($this->profileEmail);
     }
@@ -103,7 +107,6 @@ class Profile implements \JsonSerializable {
      * @throws \TypeError if $newProfileEmail is not a string
      * @throws \InvalidArgumentException if $newProfileEmail is invalid or insecure
      **/
-
     public function setProfileEmail($newProfileEmail): void {
         $newProfileEmail = trim($newProfileEmail);
         $newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_EMAIL);
@@ -120,7 +123,6 @@ class Profile implements \JsonSerializable {
      * accessor method for profileHash
      * @return string value of profile hash
      **/
-
     public function getProfileHash() : string {
         return ($this->profileHash);
     }
@@ -230,6 +232,11 @@ class Profile implements \JsonSerializable {
         $this->profileStatement = $newProfileStatement;
     }
 
+    /**
+     *formats the state variables for JSON serialization
+     *
+     * @return array resulting state variables to serialize
+     **/
     public function jsonSerialize()
     {
         $fields = get_object_vars($this);
