@@ -103,6 +103,7 @@ class article implements \JsonSerializable {
             $exceptionType = get_class($exception);
             throw(new $exceptionType($exception->getMessage(), 0, $exception));
         }
+        $this->articleId = $uuid;
     }
 
     /**
@@ -128,6 +129,7 @@ class article implements \JsonSerializable {
             $exceptionType = get_class($exception);
             throw(new $exceptionType($exception->getMessage(), 0, $exception));
         }
+        $this->articleProfileId = $uuid;
     }
 
     /**

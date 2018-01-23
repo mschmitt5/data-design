@@ -71,6 +71,85 @@ class article implements \JsonSerializable{
         }
     }
 
+    /**
+     * accessor method for clap ID
+     *
+     * @return Uuid value of clap ID
+     **/
+    public function getClapId() : Uuid {
+        return $this->clapId;
+    }
+
+    /**
+     * mutator method for clap ID
+     *
+     * @param Uuid|String $newClapId
+     *
+     * @throws \RangeException if $newClapId is not positive
+     * @throws \TypeError if $newClapId is not a uuid or string
+     **/
+    public function setClapId($newClapId) : void {
+        try {
+            $uuid = self::validateUuid($newClapId);
+        } catch (\InvalidArgumentException | \ RangeException | \Exception | \TypeError $exception) {
+            $exceptionType = get_class($exception);
+            throw(new $exceptionType($exception->getMessage(), 0, $exception));
+        }
+        $this->$newClapId = $uuid;
+    }
+    /**
+     * accessor method for clap article ID
+     *
+     * @return Uuid value of clap article ID
+     **/
+    public function getClapArticleId() : Uuid {
+        return $this->clapArticleId;
+    }
+
+    /**
+     * mutator method for clap article ID
+     *
+     * @param Uuid|String $newClapArticleId
+     *
+     * @throws \RangeException if $newClapArticleId is not positive
+     * @throws \TypeError if $newClapArticleId is not a uuid or string
+     **/
+    public function setClapArticleId($newClapArticleId) : void {
+        try {
+            $uuid = self::validateUuid($newClapArticleId);
+        } catch (\InvalidArgumentException | \ RangeException | \Exception | \TypeError $exception) {
+            $exceptionType = get_class($exception);
+            throw(new $exceptionType($exception->getMessage(), 0, $exception));
+        }
+        $this->$newClapArticleId = $uuid;
+    }
+    /**
+     * accessor method for clap profile ID
+     *
+     * @return Uuid value of clap profile ID
+     **/
+    public function getClapProfileId() : Uuid {
+        return $this->clapProfileId;
+    }
+
+    /**
+     * mutator method for clap profile ID
+     *
+     * @param Uuid|String $newClapProfileId
+     *
+     * @throws \RangeException if $newClapProfileId is not positive
+     * @throws \TypeError if $newClapProfileId is not a uuid or string
+     **/
+    public function setClapProfileId($newClapProfileId) : void {
+        try {
+            $uuid = self::validateUuid($newClapProfileId);
+        } catch (\InvalidArgumentException | \ RangeException | \Exception | \TypeError $exception) {
+            $exceptionType = get_class($exception);
+            throw(new $exceptionType($exception->getMessage(), 0, $exception));
+        }
+        $this->$newClapProfileId = $uuid;
+    }
+
 
     /**
      *formats the state variables for JSON serialization
@@ -81,8 +160,8 @@ class article implements \JsonSerializable{
     {
         $fields = get_object_vars($this);
         $fields["clapId"] = $this->clapId->toString();
-        $fields["articleId"] = $this->articleId->toString();
-        $fields["articleProfileId"] = $this->articleProfileId->toString();
+        $fields["articleId"] = $this->clapArticleId->toString();
+        $fields["articleProfileId"] = $this->clapProfileId->toString();
         return ($fields);
     }
 }
