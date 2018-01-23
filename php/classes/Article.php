@@ -23,4 +23,45 @@ require_once (dirname(__DIR__) . "classes/autoload.php");
 class article implements \JsonSerializable {
     use ValidateUuid;
     use ValidateDate;
+
+    /**
+     * ID for this article. This will be the primary key.
+     * @var Uuid $articleId
+     **/
+    private $articleId;
+
+    /**
+     * ID for the profile creating the article. This is a foreign key.
+     * @var Uuid $profileId
+     **/
+    private $profileId;
+
+    /**
+     * the actual article text
+     *
+     * @var string $articleText
+     **/
+    private $articleText;
+
+    /**
+     * title of the article
+     *
+     * @var string $articleTitle
+     **/
+    private $articleTitle;
+
+    /**
+     * constructor for the article
+     *
+     * @param Uuid|String $newArticleId
+     * @param Uuid|String $newProfileId
+     * @param string $newArticleText
+     * @param string $newArticleTitle
+     *
+     * @throws \InvalidArgumentException if data types are not valid or are insecure
+     * @throws \RangeException if data values are out of bounds
+     * @throws \Exception if some other exception occurs
+     * @throws \TypeError if a data type violates a data hint
+     **/
+
 }
