@@ -63,5 +63,24 @@ class article implements \JsonSerializable {
      * @throws \Exception if some other exception occurs
      * @throws \TypeError if a data type violates a data hint
      **/
+    public function __construct($newArticleId, $newArticleProfileId, string $newArticleText, string $newArticleTitle){
+        try {
+            $this->setArticleId($newArticleId);
+            $this->setArticleProfileId($newArticleProfileId);
+            $this->setArticleText($newArticleText);
+            $this->setArticleTitle($newArticleTitle);
+        }
+        catch (\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+            //to determine what exception type was thrown
+            $exceptionType = get_class($exception);
+            throw (new $exceptionType($exception->getMessage(), 0, $exception));
+        }
+    }
+
+    /**
+     * accessor method for article Id
+     *
+     *
+     */
 
 }
