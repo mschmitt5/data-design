@@ -49,12 +49,27 @@ class article implements \JsonSerializable{
     private $clapProfileId;
 
     /**
-     * constructor
-     */
-
-
-
-
+     * constructor for the clap class
+     *
+     * @param Uuid|String $newClapId
+     * @param Uuid|String $newClapArticleId
+     * @param Uuid|String $newClapProfileId
+     *
+     * @throws \InvalidArgumentException if data types are not valid or are insecure
+     * @throws \RangeException if data values are out of bounds
+     * @throws \Exception if other exception occurs
+     * @throws \TypeError if data type violates a type hint
+     **/
+    public function __construct($newClapId, $newClapArticleId, $newClapProfileId){
+        try {
+            $this->setClapId($newClapId);
+            $this->setClapArticleId($newClapArticleId);
+            $this->setClapProfileId($newClapProfileId);
+        } catch (\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+            $exceptionType = get_class($exception);
+            throw (new $exceptionType ($exception->getMessage(), 0, $exception));
+        }
+    }
 
 
     /**
