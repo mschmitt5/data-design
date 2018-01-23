@@ -28,7 +28,7 @@
         <li>The site checks that this information is valid and available and creates Tiberius' account.</li>
         <li>Tiberius clicks the "follow" button again and successfully follows Dr. McCoy.</li>
     </ol>
-    <img src="inkedmedium1.jpg" alt="" width="500">
+    <img src="images/inkedmedium1.jpg" alt="" width="500">
     <img src="images/inkedmedium2.jpg" alt="" width="500">
     </div>
         <h2>Entities and Attributes</h2>
