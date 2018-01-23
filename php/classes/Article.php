@@ -10,6 +10,9 @@ namespace Edu\Cnm\Mschmitt5\DataDesign;
 require_once ("autoload.php");
 require_once (dirname(__DIR__) . "classes/autoload.php");
 
+use Edu\Cnm\DataDesign\ValidateUuid;
+use Edu\Cnm\DataDesign\ValidateDate;
+use Ramsey\Uuid\Uuid;
 /**
  * Small article class for a site similar to Medium.
  *
@@ -193,12 +196,10 @@ class article implements \JsonSerializable {
          *
          * @return array resulting state variables to serialize
          **/
-        public function jsonSerialize()
-        {
+        public function jsonSerialize() : array {
             $fields = get_object_vars($this);
             $fields["articleId"] = $this->articleId->toString();
-            $fields["articleProfileId"] =
-                $this->articleProfileId->toString();
+            $fields["articleProfileId"] = $this->articleProfileId->toString();
             return ($fields);
         }
 }
