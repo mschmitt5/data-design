@@ -6,6 +6,10 @@
  * Time: 11:48 AM
  **/
 
+namespace Edu\Cnm\Mschmitt5\DataDesign;
+require_once ("autoload.php");
+require_once (dirname(__DIR__) . "classes/autoload.php");
+
 /**
  * Small article class for a site similar to Medium.
  *
@@ -16,3 +20,7 @@
  *
  **/
 
+class article implements \JsonSerializable {
+    use ValidateUuid;
+    use ValidateDate;
+}
