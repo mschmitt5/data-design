@@ -418,14 +418,14 @@ class article implements \JsonSerializable {
 
 
     /**
-         *formats the state variables for JSON serialization
-         *
-         * @return array resulting state variables to serialize
-         **/
-        public function jsonSerialize() : array {
-            $fields = get_object_vars($this);
-            $fields["articleId"] = $this->articleId->toString();
-            $fields["articleProfileId"] = $this->articleProfileId->toString();
-            return ($fields);
-        }
+     *formats the state variables for JSON serialization
+     *
+     * @return array resulting state variables to serialize
+     **/
+    public function jsonSerialize() : array {
+        $fields = get_object_vars($this);
+        $fields["articleId"] = $this->articleId->toString();
+        $fields["articleProfileId"] = $this->articleProfileId->toString();
+        return ($fields);
+    }
 }
