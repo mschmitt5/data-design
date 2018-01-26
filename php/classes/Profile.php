@@ -385,13 +385,46 @@ class Profile implements \JsonSerializable {
         $profileName = str_replace("_", "\\_", str_replace("%", "\\%", $profileName));
 
         //create query template
-        $query = "SELECT profileId, profileEmail, profileStatement FROM profile WHERE profileName LIKE :profileName";
+        $query = "SELECT profileId, profileEmail, profileName, profileStatement FROM profile WHERE profileName LIKE :profileName";
         $statement = $pdo->prepare($query);
 
         //bind the profile name to the place holder in the template
         $profileName = "%$profileName%";
         $parameters = ["profileName" => $profileName];
         $statement->execute($parameters);
+
+        //build an array of profiles
+        $profiles = new \SplFixedArray($statement->rowCount());
+        $statement->setFetchMode(\PDO::FETCH_ASSOC);
+        while (($row = $statement->fetch()) !== false) {
+            try {
+                //required parameter $newProfileSalt is missing???
+                $profile = new Profile($row["profileId"], $row["profileEmail"], $row["profileName"], $row["profileStatement"]);
+                $profiles[$profiles->key()] = $profile;
+                $profiles->next();
+            } catch (\Exception $exception) {
+                //if the row couldn't be converted, rethrow it
+                throw (new \PDOException($exception->getMessage(), 0, $exception));
+            }
+        }
+        return($profiles);
+    }
+
+    /**
+     * gets all profiles
+     *
+     * @param \PDO $pdo PDO connection object
+     *
+     * @return \SplFixedArray SplFixedArray of profiles found or null if not found
+     *
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError when variables are not the correct data type
+     **/
+    public static function getAllProfiles(\PDO $pdo) : \SplFixedArray {
+        //create query template
+        $query = "SELECT profileId, profileEmail, profileName, profileStatement FROM profile";
+        $statement = $pdo->prepare($query);
+        $statement->execute();
 
         //build an array of profiles
         $profiles = new \SplFixedArray($statement->rowCount());
@@ -406,7 +439,7 @@ class Profile implements \JsonSerializable {
                 throw (new \PDOException($exception->getMessage(), 0, $exception));
             }
         }
-        return($profiles);
+        return ($profiles);
     }
 
 
