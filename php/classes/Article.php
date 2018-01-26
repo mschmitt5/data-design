@@ -243,7 +243,7 @@ class article implements \JsonSerializable {
         $query = "UPDATE article SET articleProfileId = :articleProfileId, articleText = :articleText, articleTitle = :articleTitle WHERE articleId = :articleId";
         $statement = $pdo->prepare($query);
 
-        $parameters = ["articleId" => $this->articleId->getBytes(), "articleProfileId" => $this->articleProfileId, "articleText" => $this->articleText, "articleTitle" => $this->articleTitle];
+        $parameters = ["articleId" => $this->articleId->getBytes(), "articleProfileId" => $this->articleProfileId->getBytes(), "articleText" => $this->articleText, "articleTitle" => $this->articleTitle];
         $statement->execute($parameters);
     }
 
@@ -415,11 +415,6 @@ class article implements \JsonSerializable {
         }
         return ($articles);
     }
-
-
-
-
-
 
 
     /**
