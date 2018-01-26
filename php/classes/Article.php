@@ -191,9 +191,110 @@ class article implements \JsonSerializable {
         $this->articleTitle = $newArticleTitle;
     }
 
+    /**
+     * inserts this article into mySQL
+     *
+     * @param \PDO $pdo PDO connection object
+     *
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError if $pdo is not a PDO connection object
+     **/
+    public function insert(\PDO $pdo) : void {
+
+        //create query
+        $query = "INSERT INTO article(articleId, articleProfileId, articleText, articleTitle) VALUES(:articleId, :articleProfileId, :articleText, :articleTitle)";
+        $statement = $pdo->prepare($query);
+
+        //bind the member variables to the place holders in the template
+        $parameters = ["articleId" => $this->articleId->getBytes(), "articleProfileId" => $this->articleProfileId->getBytes(), "articleText" => $this->articleText, "articleTitle" => $this->articleTitle];
+        $statement->execute($parameters);
+    }
+
+    /**
+     * deletes this article in mySQL
+     *
+     * @param \PDO $pdo PDO connection object
+     *
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError if $pdo is not a PDO connection object
+     **/
+    public function delete(\PDO $pdo) : void {
+
+        //create query template
+        $query = "DELETE FROM article WHERE articleId = :articleId";
+        $statement = $pdo->prepare($query);
+
+        //bind the member variables to the place holder in the template
+        $parameters = ["articleId" => $this->articleId->getBytes()];
+        $statement->execute($parameters);
+    }
+
+    /**
+     * updates this article in mySQL
+     *
+     * @param \PDO $pdo PDO connection object
+     *
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError if $pdo is not a PDO connection object
+     **/
+    public function update(\PDO $pdo) : void {
+
+        //create query template
+        $query = "UPDATE article SET articleProfileId = :articleProfileId, articleText = :articleText, articleTitle = :articleTitle WHERE articleId = :articleId";
+        $statement = $pdo->prepare($query);
+
+        $parameters = ["articleId" => $this->articleId->getBytes(), "articleProfileId" => $this->articleProfileId, "articleText" => $this->articleText, "articleTitle" => $this->articleTitle];
+        $statement->execute($parameters);
+    }
+
+    /**
+     * gets profile by profileId
+     *
+     * @param \PDO $pdo PDO connection object
+     * @param Uuid|string $articleId article ID to search for
+     *
+     * @return Article|null article found or null if not found
+     *
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError when a variable is not the correct data type
+     **/
+    public static function getArticleByArticleId(\PDO $pdo, $articleId) : ?Article {
+
+        //sanitize the articleId before searching
+        try {
+            $articleId = self::validateUuid($articleId);
+        } catch (\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+            throw (new \PDOException($exception->getMessage(), 0, $exception));
+        }
+
+        //create query template
+        $query = "SELECT articleId, articleProfileId, articleText, articleTitle FROM article WHERE articleId = :articleId";
+        $statement = $pdo->prepare($query);
+
+        //bind the article id to the place holder in the template
+        $parameters = ["articleId" => $articleId->getBytes()];
+        $statement->execute($parameters);
+
+        //grab the article from mySQL
+        try {
+            $article = null;
+            $statement->setFetchMode(\PDO::FETCH_ASSOC);
+            $row = $statement->fetch();
+            if ($row !== false) {
+                $article = new Article($row["articleId"], $row["articleProfileId"], $row["articleText"], $row["articleTitle"]);
+            }
+        } catch (\Exception $exception) {
+            //if the row couldn't be converted, rethrow it
+            throw (new \PDOException($exception->getMessage(), 0, $exception));
+        }
+        return($article);
+    }
 
 
-        /**
+
+
+
+    /**
          *formats the state variables for JSON serialization
          *
          * @return array resulting state variables to serialize

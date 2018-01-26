@@ -328,7 +328,7 @@ class Profile implements \JsonSerializable {
      * @return Profile|null profile found or null if not found
      *
      * @throws \PDOException when mySQL related errors occur
-     * @throws \TypeError when a bariable is not the correct data type
+     * @throws \TypeError when a variable is not the correct data type
      **/
     public static function getProfileByProfileId(\PDO $pdo, $profileId) : ?Profile {
 
