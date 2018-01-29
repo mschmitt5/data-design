@@ -250,6 +250,51 @@ class clap implements \JsonSerializable{
     }
 
     /**
+     * gets array of claps by clapArticleId
+     *
+     * @param \PDO $pdo PDO connection object
+     * @param Uuid|string $clapArticleId clap article ID to search for
+     *
+     * @return \SplFixedArray|null array if found or null if not found
+     *
+     * @throws \PDOException when mySQL related errors occur
+     * @throws \TypeError when a variable is not the correct data type
+     **/
+    public static function getClapsByClapArticleId(\PDO $pdo, $clapArticleId) : \SplFixedArray
+    {
+
+        //sanitize the ClapArticleId before searching
+        try {
+            $clapArticleId = self::validateUuid($clapArticleId);
+        } catch (\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+            throw (new \PDOException($exception->getMessage(), 0, $exception));
+        }
+
+        //create query template
+        $query = "SELECT clapId, clapArticleId, clapProfileId FROM clap WHERE clapArticleId = :clapArticleId";
+        $statement = $pdo->prepare($query);
+
+        //bind the clap article id to the place holder in the template
+        $parameters = ["clapArticleId" => $clapArticleId->getBytes()];
+        $statement->execute($parameters);
+
+        //build an array of claps
+        $claps = new \SplFixedArray($statement->rowCount());
+        $statement->setFetchMode(\PDO::FETCH_ASSOC);
+        while (($row = $statement->fetch()) !== false) {
+            try {
+                $clap = new Clap($row["clapId"], $row["clapArticleId"], $row["clapProfileId"]);
+                $claps[$claps->key()] = $clap;
+                $claps->next();
+            } catch (\Exception $exception) {
+                //if the row couldn't be converted, rethrow it
+                throw (new \PDOException($exception->getMessage(), 0, $exception));
+            }
+        }
+            return ($claps);
+        }
+
+    /**
      * gets all claps
      *
      * @param \PDO $pdo PDO connection object
