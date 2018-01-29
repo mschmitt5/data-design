@@ -308,7 +308,7 @@ class clap implements \JsonSerializable{
     public static function getClapsByClapProfileId(\PDO $pdo, $clapProfileId) : \SplFixedArray
     {
 
-        //sanitize the ClapArticleId before searching
+        //sanitize the ClapProfileId before searching
         try {
             $clapProfileId = self::validateUuid($clapProfileId);
         } catch (\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
